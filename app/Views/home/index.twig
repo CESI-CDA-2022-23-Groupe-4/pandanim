@@ -4,7 +4,11 @@
 {% block body %}
     <h1>test</h1>
 <p>Cela fonctionne parfaitement</p>
-<p>{{test}}</p>
+{{for anime in data.animes}}
+    <p>{{anime.title}}</p>
+{{endfor}}
+
+
 {% endblock %}
 
 
