@@ -27,7 +27,8 @@ abstract class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
-
+    protected $twig;
+    protected $_data;
     /**
      * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
@@ -46,7 +47,13 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-
+        $this->twig = new \Kenjis\CI4Twig\Twig();
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    protected function display($strTpl){
+        $this->twig->display($strTpl,[
+            'data'=>$this->_data,
+        ]);
     }
 }
