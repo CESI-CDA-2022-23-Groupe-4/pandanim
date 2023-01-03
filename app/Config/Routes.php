@@ -36,7 +36,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/api/getAnimePage/(:num)', 'API::getAnimePage/$1');
+$routes->get('/api/(:any)', 'API::$1'); // adds all API functions to /api/ route
+$routes->get('/api/getAnimePage/(:num)', 'API::getAnimePage/$1');  // route for getAnimePage function with page number as parameter
 
 
 /*
