@@ -9,7 +9,6 @@ class Home extends BaseController
     {
         $anime = new Anime();
         $this->_data = $anime->findAllAnimes();
-        // dd($this->_data);
         $this->display('home/index');
     }
 }
