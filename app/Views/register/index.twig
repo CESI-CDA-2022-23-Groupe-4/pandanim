@@ -4,20 +4,30 @@
 
     <h1>Register</h1>
 
-    {#<?php#}
-{#    if (count($arrErrors) > 0){#}
-{#?>#}
-{#<div class="error">#}
 {#    <?php#}
-{#            foreach($arrErrors as $strError){#}
-{#                echo "<p>".$strError."</p>";#}
-{#    }#}
+{#        if (count($arrErrors) > 0){#}
 {#    ?>#}
-{#</div>#}
-{#<?php#}
-{#    }#}
+{#    <div class="error">#}
+{#        <?php#}
+{#                foreach($arrErrors as $strError){#}
+{#                    echo "<p>".$strError."</p>";#}
+{#        }#}
+{#        ?>#}
+{#    </div>#}
+{#    <?php#}
+{#        }#}
 {#    ?>#}
 
-    <p><a href="{{data.display('register/add/')}}">Ajouter un utilisateur</a></p>
+{#    {% if arrErrors | length > 0 %}#}
+
+{#        {% for err in arrErrors %}#}
+
+{#            {{err}}#}
+
+{#        {% endfor %}#}
+
+{#    {% endif %}#}
+
+    <p><a href="{{('register/add/')}}" class="btn btn-success">Ajouter un utilisateur</a></p>
 
 {% endblock %}

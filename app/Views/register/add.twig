@@ -4,13 +4,19 @@
 
     <h1>Register add</h1>
 
-{#    {{data.arrErrors|raw}}#}
+    {% for err in data.arrErrors %}
+        {{ err }}
+        <br>
+    {% endfor %}
+
     {{data.form_open|raw}}
     {{data.form_id|raw}}
     {{data.label_email|raw}}
     {{data.form_email|raw}}
     {{data.label_password|raw}}
     {{data.form_password|raw}}
+    {{data.label_pass_confirm|raw}}
+    {{data.form_pass_confirm|raw}}
     {{data.form_submit|raw}}
     {{data.form_close|raw}}
 

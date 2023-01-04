@@ -3,7 +3,6 @@
 namespace App\Controllers;
 use App\Entities\User_entity;
 use App\Models\User_model;
-use CodeIgniter\Controller;
 
 Class Register extends BaseController {
 
@@ -15,7 +14,6 @@ Class Register extends BaseController {
         // On fournit les variables pour la vue
         $this->_data = [
             'title' => 'Register',
-//            'arrRegisters' => $objUserModel->findAll()
         ];
 
         // Affichage de la vue
@@ -39,22 +37,19 @@ Class Register extends BaseController {
         // On donne des règles de validation
         $validation->setRules([
             'email' => [
-                'label'  => 'Email de l\'utilisateur',
-                'rules'  => 'required|valid_email',
+                'rules'  => 'required|valid_email|is_unique[user.email]',
                 'errors' => [
                     'required' => 'Le {field} est obligatoire',
                 ],
             ],
             'password' => [
-                'label'  => 'Mot de passe utilisateur',
                 'rules'  => 'required|min_length[8]',
                 'errors' => [
                     'required' => 'Le {field} est obligatoire',
                 ],
             ],
 //            'pass_confirm' => [
-//                'label'  => 'Confirmer mot de passe utilisateur',
-//                'rules'  => 'required|matches[password]',
+//                'rules'  => 'matches[password]',
 //                'errors' => [
 //                    'required' => 'Le {field} est obligatoire',
 //                ],
@@ -67,6 +62,8 @@ Class Register extends BaseController {
             $objUser->fill($this->request->getPost());
             //on teste la validation du formulaire sur les données
             if ($validation->run($this->request->getPost())) {
+                // on hash le password
+                $objUser->setPwdHash($objUser->password);
                 // On sauvegarde l'objet
                 $objUserModel->save($objUser);
                 // redirection vers l'action par défaut du controller Register
@@ -80,11 +77,13 @@ Class Register extends BaseController {
         $this->_data = [
             'arrErrors' => $arrErrors,
             'form_open' => form_open("register/add"),
-            'form_id' => form_hidden("user_id", $objUser->id ?? '', "id='id'"),
+            'form_id' => form_hidden("user_id",'', "id='id'"),
             'label_email' => form_label("Email", "email"),
-            'form_email' => form_input("email", $objUser->email ?? '', "id='email'"),
+            'form_email' => form_input("email", '', "id='email'"),
             'label_password' => form_label("Password", "password"),
-            'form_password' => form_input("password", $objUser->password ?? '', "id='password'"),
+            'form_password' => form_input("password", '', "id='password'"),
+//            'label_pass_confirm' => form_label("Password confirm", "pass_confirm"),
+//            'form_pass_confirm' => form_input("password_confirm", '', "id='pass_confirm'"),
             'form_submit' => form_submit("submit", "Register"),
             'form_close' => form_close(),
         ];

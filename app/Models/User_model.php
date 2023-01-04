@@ -16,6 +16,6 @@ class User_model extends Model
     protected $returnType    = 'App\Entities\User_entity';
 
     // Utilisation ou non des dates (création / modification)
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
 }
