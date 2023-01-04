@@ -8,6 +8,8 @@ class Home extends BaseController
     public function index()
     {
         $anime = new Anime();
-        $anime->findAllAnimes();
+        $this->_data = $anime->findAllAnimes();
+        // dd($this->_data);
+        $this->display('home/index');
     }
 }
