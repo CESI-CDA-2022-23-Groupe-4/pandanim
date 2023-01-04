@@ -14,3 +14,10 @@
 {% endif %}
 
 {% endblock %}
+
+{% if arrError | length > 1  %}
+    
+    {% for err in arrError %}
+        {{err}}
+    {% endfor %}
+{% endif %}

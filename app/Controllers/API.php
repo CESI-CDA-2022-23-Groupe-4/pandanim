@@ -8,9 +8,14 @@ class API extends BaseController
     
     /// Gets the requested anime page from Jikan API and returns it as JSON
     public function getAnimePage($page = 1) {
-        $response = file_get_contents('https://api.jikan.moe/v4/anime?page='.$page);
-        return $this->response->setJSON($response);
+        $response = [];
+        $data = json_decode(file_get_contents('https://api.jikan.moe/v4/anime?page='.$page), true);
+        $response = array_merge($response, $data['data']);
+        $anime = new Anime();
+        $anime->save($response);
+        return redirect()->to('/api/ge');
     }
+
 
     /// Gets all anime from Jikan API and returns it as JSON
     /// This function will take a long time to run, so be patient
@@ -26,8 +31,11 @@ class API extends BaseController
             if(!$data['pagination']['has_next_page']) {
                 break;
             }
-            sleep(1);
+            $anime = new Anime();
+            $anime->save($response);
+            // sleep(0.1);
         }
-        return $this->response->setJSON($response);
+        return redirect()->to('/');
+        // return $this->response->setJSON($response);
     }
 }
