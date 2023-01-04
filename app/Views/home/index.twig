@@ -4,7 +4,13 @@
 {% block body %}
     <h1>test</h1>
 <p>Cela fonctionne parfaitement</p>
-<p>{{test}}</p>
+{% if data is defined%}
+    <ul>
+        {% for anime in data %}
+            <li>{{anime.title}}</li>
+        {% endfor %}
+    </ul>
+    
+{% endif %}
+
 {% endblock %}
-
-
