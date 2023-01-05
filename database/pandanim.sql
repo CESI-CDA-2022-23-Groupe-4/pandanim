@@ -21,7 +21,7 @@ USE `pandanim`;
 CREATE DATABASE IF NOT EXISTS `pandanim` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `pandanim`;
 
-DROP TABLE IF EXISTS `anime`;
+-- DROP TABLE IF EXISTS `anime`;
 CREATE TABLE IF NOT EXISTS `anime` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
   `image_url` varchar(50) DEFAULT NULL,
@@ -44,20 +44,39 @@ CREATE TABLE IF NOT EXISTS `anime` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+--
+-- Structure de la table `genre`
+--
 
+-- DROP TABLE IF EXISTS `genre`;
+CREATE TABLE IF NOT EXISTS `genre` (
+  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
 -- Structure de la table `anime_genre`
 --
 
-DROP TABLE IF EXISTS `anime_genre`;
+-- DROP TABLE IF EXISTS `anime_genre`;
 CREATE TABLE IF NOT EXISTS `anime_genre` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
-  `genre_id` smallint(5) UNSIGNED NOT NULL
+  `genre_id` smallint(5) UNSIGNED NOT NULL,
   KEY `anime_id` (`anime_id`),
   KEY `genre_id` (`genre_id`),
   CONSTRAINT `anime_genre_ibfk_1` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`),
   CONSTRAINT `anime_genre_ibfk_2` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `studio`
+--
+
+-- DROP TABLE IF EXISTS `studio`;
+CREATE TABLE IF NOT EXISTS `studio` (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -67,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `anime_genre` (
 DROP TABLE IF EXISTS `anime_studio`;
 CREATE TABLE IF NOT EXISTS `anime_studio` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
-  `studio_id` smallint(5) UNSIGNED NOT NULL
+  `studio_id` smallint(5) UNSIGNED NOT NULL,
   KEY `FK_anime_studio_anime` (`anime_id`),
   KEY `FK_anime_studio_studio` (`studio_id`),
   CONSTRAINT `FK_anime_studio_anime` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -75,50 +94,10 @@ CREATE TABLE IF NOT EXISTS `anime_studio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Structure de la table `genre`
---
-
-DROP TABLE IF EXISTS `genre`;
-CREATE TABLE IF NOT EXISTS `genre` (
-  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `review`
---
-
-DROP TABLE IF EXISTS `review`;
-CREATE TABLE IF NOT EXISTS `review` (
-  `anime_id` smallint(5) UNSIGNED NOT NULL,
-  `user_id` smallint(5) UNSIGNED NOT NULL,
-  `score` tinyint(1) UNSIGNED NOT NULL,
-  `comment` text
-  KEY `anime_id` (`anime_id`),
-  KEY `FK_review_user` (`user_id`),
-  CONSTRAINT `FK_review_anime` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_review_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Structure de la table `studio`
---
-
-DROP TABLE IF EXISTS `studio`;
-CREATE TABLE IF NOT EXISTS `studio` (
-  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
 -- Structure de la table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
+-- DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
@@ -127,6 +106,23 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `review`
+--
+
+-- DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
+  `anime_id` smallint(5) UNSIGNED NOT NULL,
+  `user_id` smallint(5) UNSIGNED NOT NULL,
+  `score` tinyint(1) UNSIGNED NOT NULL,
+  `comment` text,
+  KEY `anime_id` (`anime_id`),
+  KEY `FK_review_user` (`user_id`),
+  CONSTRAINT `FK_review_anime` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_review_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 COMMIT;
 
 -- Les données exportées n'étaient pas sélectionnées.
