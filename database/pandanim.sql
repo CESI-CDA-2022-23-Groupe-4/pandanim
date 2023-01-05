@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `anime_genre` (
   `genre_id` smallint(5) UNSIGNED NOT NULL,
   KEY `anime_id` (`anime_id`),
   KEY `genre_id` (`genre_id`),
+  UNIQUE KEY `combined_id` (`anime_id`,`genre_id`),
   CONSTRAINT `anime_genre_ibfk_1` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`),
   CONSTRAINT `anime_genre_ibfk_2` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `anime_studio` (
   `studio_id` smallint(5) UNSIGNED NOT NULL,
   KEY `FK_anime_studio_anime` (`anime_id`),
   KEY `FK_anime_studio_studio` (`studio_id`),
+  UNIQUE KEY `combined_id` (`anime_id`,`studio_id`),
   CONSTRAINT `FK_anime_studio_anime` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_anime_studio_studio` FOREIGN KEY (`studio_id`) REFERENCES `studio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -119,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   `comment` text,
   KEY `anime_id` (`anime_id`),
   KEY `FK_review_user` (`user_id`),
+  UNIQUE KEY `combined_id` (`anime_id`,`user_id`),
   CONSTRAINT `FK_review_anime` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_review_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
