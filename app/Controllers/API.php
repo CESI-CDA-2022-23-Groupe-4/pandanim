@@ -33,9 +33,7 @@ class API extends BaseController
             }
             $anime = new Anime();
             $anime->save($response);
-            // sleep(0.1);
         }
         return redirect()->to('/');
-        // return $this->response->setJSON($response);
     }
 }
