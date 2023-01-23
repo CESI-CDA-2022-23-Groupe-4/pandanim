@@ -6,6 +6,11 @@ use App\Models\AnimeModel;
 
 class Home extends BaseController
 {
+    public function __construct()
+    {
+       
+    }
+
     public function index()
     {
         $anime = new Anime();
@@ -18,4 +23,5 @@ class Home extends BaseController
         $this->_data = $animeModel->find($id);
         $this->display('home/details');
     }
+    
 }
