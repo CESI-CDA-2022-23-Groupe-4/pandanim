@@ -119,6 +119,8 @@ CREATE TABLE IF NOT EXISTS `review` (
   `user_id` smallint(5) UNSIGNED NOT NULL,
   `score` tinyint(1) UNSIGNED NOT NULL,
   `comment` text,
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
   KEY `anime_id` (`anime_id`),
   KEY `FK_review_user` (`user_id`),
   UNIQUE KEY `combined_id` (`anime_id`,`user_id`),

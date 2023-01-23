@@ -9,10 +9,12 @@
 | roles    | array             | Roles             |                  |
 
 ## Table: `review`
-| Name    | Type             | Description | Comment |
-| ------- | ---------------- | ----------- | ------- |
-| score   | tinyint unsigned | Score       | 0 to 10 |
-| comment | text             | Comment     |         |
+| Name     | Type             | Description   | Comment |
+| -------  | ---------------- | ------------- | ------- |
+| score    | tinyint unsigned | Score         | 0 to 10 |
+| comment  | text             | Comment       |         |
+| created_at | Date             | Creation Date |         |
+| updated_at | Date             | Editable Date |         |
 
 ## Table: `anime`
 
