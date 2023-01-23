@@ -41,6 +41,9 @@ CREATE TABLE IF NOT EXISTS `anime` (
   `scored_by` int(11) UNSIGNED DEFAULT NULL COMMENT '	Number of reviewer from MyAnimeList',
   `rating` varchar(50) DEFAULT NULL,
   `synopsis` text,
+  `active` boolean,
+  `updatedAt` datetime
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

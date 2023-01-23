@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Controllers\Anime;
 use App\Models\AnimeModel;
+use CodeIgniter\HTTP\IncomingRequest;
 
 class Home extends BaseController
 {
@@ -24,4 +25,8 @@ class Home extends BaseController
         $this->display('home/details');
     }
     
+    public function search(){
+        $request = new IncomingRequest('get');
+        dd($request->getGet());
+    }
 }
