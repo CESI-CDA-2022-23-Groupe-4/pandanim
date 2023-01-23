@@ -13,8 +13,8 @@
 | -------  | ---------------- | ------------- | ------- |
 | score    | tinyint unsigned | Score         | 0 to 10 |
 | comment  | text             | Comment       |         |
-| created_at | Date             | Creation Date |         |
-| updated_at | Date             | Editable Date |         |
+| created_at | DateTime             | Creation Date |         |
+| updated_at | DateTime             | Editable Date |         |
 
 ## Table: `anime`
 
