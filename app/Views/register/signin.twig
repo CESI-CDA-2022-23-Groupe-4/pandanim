@@ -2,8 +2,6 @@
 
 {% block body %}
 
-    <h1>Register</h1>
-
 {#    <?php#}
 {#        if (count($arrErrors) > 0){#}
 {#    ?>#}
@@ -28,6 +26,22 @@
 
 {#    {% endif %}#}
 
-    <p><a href="{{('register/add/')}}" class="btn btn-success">Ajouter un utilisateur</a></p>
+    {% for err in data.arrErrors %}
+        {{ err }}
+        <br>
+    {% endfor %}
+
+    {{data.form_open|raw}}
+    {{data.form_id|raw}}
+    {{data.label_email|raw}}
+    {{data.form_email|raw}}
+    {{data.label_password|raw}}
+    {{data.form_password|raw}}
+    {{data.label_pass_confirm|raw}}
+    {{data.form_pass_confirm|raw}}
+    {{data.form_submit|raw}}
+    {{data.form_close|raw}}
+
+    <p><a href="{{('signup')}}" class="btn btn-success">Sign Up</a></p>
 
 {% endblock %}
