@@ -21,7 +21,7 @@ USE `pandanim`;
 CREATE DATABASE IF NOT EXISTS `pandanim` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `pandanim`;
 
--- DROP TABLE IF EXISTS `anime`;
+DROP TABLE IF EXISTS `anime`;
 CREATE TABLE IF NOT EXISTS `anime` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
   `image_url` varchar(50) DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `anime` (
   `rating` varchar(50) DEFAULT NULL,
   `synopsis` text,
   `active` boolean,
-  `updatedAt` datetime
+  `updatedAt` datetime,
   
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `anime` (
 -- Structure de la table `genre`
 --
 
--- DROP TABLE IF EXISTS `genre`;
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
   `name` varchar(50) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `genre` (
 -- Structure de la table `anime_genre`
 --
 
--- DROP TABLE IF EXISTS `anime_genre`;
+DROP TABLE IF EXISTS `anime_genre`;
 CREATE TABLE IF NOT EXISTS `anime_genre` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
   `genre_id` smallint(5) UNSIGNED NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `anime_genre` (
 -- Structure de la table `studio`
 --
 
--- DROP TABLE IF EXISTS `studio`;
+DROP TABLE IF EXISTS `studio`;
 CREATE TABLE IF NOT EXISTS `studio` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `anime_studio` (
 -- Structure de la table `user`
 --
 
--- DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Structure de la table `review`
 --
 
--- DROP TABLE IF EXISTS `review`;
+DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
   `user_id` smallint(5) UNSIGNED NOT NULL,
