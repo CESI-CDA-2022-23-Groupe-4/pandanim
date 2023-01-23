@@ -9,6 +9,9 @@ class API extends BaseController
     /// Gets the requested anime page from Jikan API and returns it as JSON
     public function getAnimePage($page = 1) {
         $response = file_get_contents('https://api.jikan.moe/v4/anime?page='.$page);
+        if ($response === false) {
+            return $this->response->setStatusCode(404, 'Page not found');
+        }
         return $this->response->setJSON($response);
     }
 
