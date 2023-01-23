@@ -13,12 +13,13 @@ class API extends BaseController
         $response = array_merge($response, $data['data']);
         $anime = new Anime();
         $anime->save($response);
-        return redirect()->to('/api/ge');
+        return redirect()->to('/');
     }
 
 
     /// Gets all anime from Jikan API and returns it as JSON
     /// This function will take a long time to run, so be patient
+    // Dont'use THIS FUNCTION !!!!!!! 
     public function getAllAnime() {
         $page = 1;
         $response = [];

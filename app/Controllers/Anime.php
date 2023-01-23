@@ -13,7 +13,7 @@ class Anime extends BaseController
     public function findAllAnimes()
     {
         $animeModel = new AnimeModel();
-        $animes = $animeModel->findAll(1000);
+        $animes = $animeModel->where('active', 1)->findAll(1000);
         $this->_data = [
             'animes'=>$animes
         ];
@@ -40,14 +40,13 @@ class Anime extends BaseController
                 'type'=> $anime['type'],
                 'episodes'=> $anime['episodes'],
                 'status'=> $anime['status'],
-                'aired_from'=> date_format($anime['aired']['from'], 'Y-m-d)'),
-                'aired_to'=> date_format($anime['aired']['to'], 'Y-m-d'),
+                'aired_from'=> gettype($anime['aired']['from']) == "string" ? $anime['aired']['from']  : date_format($anime['aired']['from'], 'Y-m-d)'),
+                'aired_to'=> gettype($anime['aired']['from']) == "string" ? $anime['aired']['from'] : date_format($anime['aired']['from'], 'Y-m-d)'),
                 'duration'=> $anime['duration'],
                 'mal_score'=> $anime['score'],
                 'scored_by'=> $anime['scored_by'],
                 'rating'=> $anime['rating'],
                 'synopsis'=> $anime['synopsis'],
-                'broadcoast'=> $anime['broadcast']['string'],
                 'active'=>1
             ]
             ;
