@@ -1,9 +1,13 @@
 {% extends "base.twig" %}
 
-
 {% block body %}
     <h1>test</h1>
 <p>Cela fonctionne parfaitement</p>
+
+{#    {{ data.objuser.username }}#}
+{#    {{ data.objuser.email }}#}
+{#    {{ data.objuser.password }}#}
+
 {% if data is defined%}
     <ul>
         {% for anime in data %}
