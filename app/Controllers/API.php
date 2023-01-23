@@ -11,6 +11,9 @@ class API extends BaseController
         $response = [];
         $data = json_decode(file_get_contents('https://api.jikan.moe/v4/anime?page='.$page), true);
         $response = array_merge($response, $data['data']);
+        if ($response === false) {
+            return $this->response->setStatusCode(404, 'Page not found');
+        }
         $anime = new Anime();
         $anime->save($response);
         return redirect()->to('/');
