@@ -16,7 +16,7 @@ class API extends BaseController
         return redirect()->to('/');
     }
 
-
+    
     /// Gets all anime from Jikan API and returns it as JSON
     /// This function will take a long time to run, so be patient
     // Dont'use THIS FUNCTION !!!!!!! 

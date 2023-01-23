@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Entities\Anime_entity;
 use App\Models\AnimeModel;
+use DateTime;
 
 class Anime extends BaseController
 {
@@ -47,7 +48,8 @@ class Anime extends BaseController
                 'scored_by'=> $anime['scored_by'],
                 'rating'=> $anime['rating'],
                 'synopsis'=> $anime['synopsis'],
-                'active'=>1
+                'active'=>1,
+                'updatedAt' => new DateTime()
             ]
             ;
             if($animeModel->find($anime['mal_id'])) {
