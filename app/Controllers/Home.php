@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\Anime;
 
 class Home extends BaseController
 {
     public function index()
     {
-        $test = 'test';
-        $this->display('home/index', [
-            'test'=>$test
-        ]);
+        $anime = new Anime();
+        $this->_data = $anime->findAllAnimes();
+        $this->display('home/index');
     }
 }
