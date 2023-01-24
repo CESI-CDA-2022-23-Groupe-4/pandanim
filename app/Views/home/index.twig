@@ -1,6 +1,5 @@
 {% extends "base.twig" %}
 
-
 {% block body %}
 <!-- <html lang="en" data-bs-theme="dark">
 <div class="card" style="width: 18rem;">
@@ -13,7 +12,6 @@
 </div>
 -->
 {% set cardWeight = 0 %}
-
 {% if data is defined %}
 <div class="row row-cols-1 row-cols-md-4" >
             {% for anime in data | slice(0,20) %}       
