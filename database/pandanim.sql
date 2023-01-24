@@ -21,9 +21,10 @@ USE `pandanim`;
 CREATE DATABASE IF NOT EXISTS `pandanim` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `pandanim`;
 
--- DROP TABLE IF EXISTS `anime`;
+DROP TABLE IF EXISTS `anime`;
 CREATE TABLE IF NOT EXISTS `anime` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `image_url` varchar(50) DEFAULT NULL,
   `small_image_url` varchar(52) DEFAULT NULL,
   `large_image_url` varchar(52) DEFAULT NULL,
@@ -34,13 +35,16 @@ CREATE TABLE IF NOT EXISTS `anime` (
   `type` varchar(10) DEFAULT NULL,
   `episodes` smallint(5) UNSIGNED DEFAULT NULL,
   `status` varchar(25) DEFAULT NULL,
-  `aired_from` date DEFAULT NULL,
-  `aired_to` date DEFAULT NULL,
+  `aired_from` varchar(10) DEFAULT NULL,
+  `aired_to` varchar(10) DEFAULT NULL,
   `duration` varchar(25) DEFAULT NULL,
   `mal_score` decimal(4,2) DEFAULT NULL COMMENT 'Reviewer score from MyAnimeList (max to 10.00)',
   `scored_by` int(11) UNSIGNED DEFAULT NULL COMMENT '	Number of reviewer from MyAnimeList',
   `rating` varchar(50) DEFAULT NULL,
   `synopsis` text,
+  `active` boolean,
+  `updatedAt` datetime,
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -48,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `anime` (
 -- Structure de la table `genre`
 --
 
--- DROP TABLE IF EXISTS `genre`;
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
   `name` varchar(50) NOT NULL,
@@ -58,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `genre` (
 -- Structure de la table `anime_genre`
 --
 
--- DROP TABLE IF EXISTS `anime_genre`;
+DROP TABLE IF EXISTS `anime_genre`;
 CREATE TABLE IF NOT EXISTS `anime_genre` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
   `genre_id` smallint(5) UNSIGNED NOT NULL,
@@ -73,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `anime_genre` (
 -- Structure de la table `studio`
 --
 
--- DROP TABLE IF EXISTS `studio`;
+DROP TABLE IF EXISTS `studio`;
 CREATE TABLE IF NOT EXISTS `studio` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -99,12 +103,15 @@ CREATE TABLE IF NOT EXISTS `anime_studio` (
 -- Structure de la table `user`
 --
 
--- DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL COMMENT 'hashed (SHA-512)',
-  `roles` json NOT NULL,
+  `roles` json NOT NULL DEFAULT '["ROLE_USER"]',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -113,12 +120,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Structure de la table `review`
 --
 
--- DROP TABLE IF EXISTS `review`;
+DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `anime_id` smallint(5) UNSIGNED NOT NULL,
   `user_id` smallint(5) UNSIGNED NOT NULL,
   `score` tinyint(1) UNSIGNED NOT NULL,
   `comment` text,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY `anime_id` (`anime_id`),
   KEY `FK_review_user` (`user_id`),
   UNIQUE KEY `combined_id` (`anime_id`,`user_id`),

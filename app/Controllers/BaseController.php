@@ -29,6 +29,7 @@ abstract class BaseController extends Controller
      */
     protected $request;
     protected $twig;
+    protected $session;
     protected $_data;
     /**
      * An array of helpers to be loaded automatically upon
@@ -48,7 +49,7 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
         $this->twig = new Twig();
-        // E.g.: $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
     }
 
     protected function display($strTpl){
