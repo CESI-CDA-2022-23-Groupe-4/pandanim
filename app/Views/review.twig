@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+
+
+{% block body %}
+    <h1>test liste commentaire</h1>
+{% if data is defined%}
+    <ul>
+        {% for review in data %}
+            <li>{{review.comment}}</li>
+            <li>{{review.*}}</li>
+        {% endfor %}
+    </ul>
+    
+{% endif %}
+
+{% endblock %}
