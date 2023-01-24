@@ -14,7 +14,7 @@ class Home extends BaseController
     {
         $anime = new Anime();
         $this->_data = [
-            $anime->findAllAnimes(),
+            'animes' =>$anime->findAllAnimes(),
             'objuser' => $this->session->get('user')
         ];
         $this->display('home/index');

@@ -14,11 +14,11 @@
 {% set cardWeight = 0 %}
 
 {% if data is defined %}
-<div class="container">
-<div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" >
-            {% for anime in data %} 
+<div class="container ms-0">
+<div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" style = "width : 145%" >
+            {% for anime in data.animes %} 
               {% if anime.mal_score >= 9 %}            
-         <div class="card text-white bg-dark mt-5" style = "margin-left : 0.25rem">      
+         <div class="card text-white bg-dark mt-5 " style = "margin-left : 0.25rem">      
              <div class = "col">
               {% if anime.small_image_url %}
                   <img src={{anime.small_image_url}} class="card-img-top" alt="...">
@@ -45,5 +45,6 @@
 </div>
     
 {% endif %}
+  
 </html>
 {% endblock %}
