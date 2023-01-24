@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Kenjis\CI4Twig\Twig;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -27,7 +28,9 @@ abstract class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
-
+    protected $twig;
+    protected $session;
+    protected $_data;
     /**
      * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
@@ -36,8 +39,7 @@ abstract class BaseController extends Controller
      * @var array
      */
     protected $helpers = [];
-
-    /**
+    /*
      * Constructor.
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -46,7 +48,13 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
+        $this->twig = new Twig();
+        $this->session = \Config\Services::session();
+    }
 
-        // E.g.: $this->session = \Config\Services::session();
+    protected function display($strTpl){
+        $this->twig->display($strTpl,[
+            'data'=>$this->_data,
+        ]);
     }
 }

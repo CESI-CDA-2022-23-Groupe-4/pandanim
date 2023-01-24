@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\Anime;
 
 class Home extends BaseController
 {
-    public function __construct(private $twig = new \Kenjis\CI4Twig\Twig()){}
     public function index()
     {
-        $test = 'test';
-        $this->twig->display('home/index', [
-            'test'=>$test
-        ]);
+        $anime = new Anime();
+        $this->_data = [
+            $anime->findAllAnimes(),
+            'objuser' => $this->session->get('user')
+        ];
+        $this->display('home/index');
     }
 }
