@@ -24,6 +24,7 @@
 | Name            | Type              | Description       | Comment                               |
 | --------------- | ----------------- | ----------------- | ------------------------------------- |
 | id              | smallint unsigned | Unique identifier | not auto increment -> getted from API |
+| updated_at      | datetime          | Last update       |                                       |
 | image_url       | varchar(50)       | Image URL         |                                       |
 | small_image_url | varchar(52)       | Small Image URL   |                                       |
 | large_image_url | varchar(52)       | Large Image URL   |                                       |
@@ -34,8 +35,8 @@
 | type            | varchar(10)       | Type              |                                       |
 | episodes        | smallint unsigned | Episodes          |                                       |
 | status          | varchar(25)       | Status            |                                       |
-| aired_from      | Date              | Aired from        |                                       |
-| aired_to        | Date              | Aired to          |                                       |
+| aired_from      | varchar(10)              | Aired from        |                                       |
+| aired_to        | varchar(10)              | Aired to          |                                       |
 | duration        | varchar(25)       | Duration          |                                       |
 | mal_score       | decimal(4,2)      | MAL score         | Reviewer score from MyAnimeList       |
 | mal_scored_by   | int unsigned      | MAL scored by     | Number of reviewer from MyAnimeList   |

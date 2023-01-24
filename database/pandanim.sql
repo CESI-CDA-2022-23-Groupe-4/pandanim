@@ -24,6 +24,7 @@ USE `pandanim`;
 DROP TABLE IF EXISTS `anime`;
 CREATE TABLE IF NOT EXISTS `anime` (
   `id` smallint(5) UNSIGNED NOT NULL COMMENT 'not auto increment -> getted from API',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `image_url` varchar(50) DEFAULT NULL,
   `small_image_url` varchar(52) DEFAULT NULL,
   `large_image_url` varchar(52) DEFAULT NULL,
@@ -34,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `anime` (
   `type` varchar(10) DEFAULT NULL,
   `episodes` smallint(5) UNSIGNED DEFAULT NULL,
   `status` varchar(25) DEFAULT NULL,
-  `aired_from` date DEFAULT NULL,
-  `aired_to` date DEFAULT NULL,
+  `aired_from` varchar(10) DEFAULT NULL,
+  `aired_to` varchar(10) DEFAULT NULL,
   `duration` varchar(25) DEFAULT NULL,
   `mal_score` decimal(4,2) DEFAULT NULL COMMENT 'Reviewer score from MyAnimeList (max to 10.00)',
   `scored_by` int(11) UNSIGNED DEFAULT NULL COMMENT '	Number of reviewer from MyAnimeList',
