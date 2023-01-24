@@ -1,18 +1,23 @@
 # Data Dictionnary
 
 ## Table: `user`
-| Name     | Type              | Description       | Comment          |
-| -------- | ----------------- | ----------------- | ---------------- |
-| id       | smallint unsigned | Unique identifier | auto increment   |
-| email    | varchar(255)      | Email address     | unique           |
-| password | varchar(128)      | Password          | hashed (SHA-512) |
-| roles    | array             | Roles             |                  |
+| Name       | Type              | Description       | Comment    |
+|------------|-------------------| ----------------- |------------|
+| id         | smallint unsigned | Unique identifier | auto increment |
+| username   | varchar(30)       | Username          |            |
+| first_name | varchar(40)       | First name        |            |
+| last_name  | varchar(40)       | Last name         |            |
+| email      | varchar(255)      | Email address     | unique     |
+| password   | varchar(128)      | Password          | hashed (SHA-512) |
+| roles      | array             | Roles             |            |
 
 ## Table: `review`
-| Name    | Type             | Description | Comment |
-| ------- | ---------------- | ----------- | ------- |
-| score   | tinyint unsigned | Score       | 0 to 10 |
-| comment | text             | Comment     |         |
+| Name     | Type             | Description   | Comment |
+| -------  | ---------------- | ------------- | ------- |
+| score    | tinyint unsigned | Score         | 0 to 10 |
+| comment  | text             | Comment       |         |
+| created_at | DateTime             | Creation Date |         |
+| updated_at | DateTime             | Editable Date |         |
 
 ## Table: `anime`
 
