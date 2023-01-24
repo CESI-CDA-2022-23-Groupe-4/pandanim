@@ -105,9 +105,12 @@ CREATE TABLE IF NOT EXISTS `anime_studio` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL COMMENT 'hashed (SHA-512)',
-  `roles` json NOT NULL,
+  `roles` json NOT NULL DEFAULT '["ROLE_USER"]',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
