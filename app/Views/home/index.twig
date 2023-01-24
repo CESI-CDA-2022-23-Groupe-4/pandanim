@@ -15,27 +15,36 @@
 {% set cardWeight = 0 %}
 
 {% if data is defined %}
-<div class="row row-cols-1 row-cols-md-4" >
-            {% for anime in data | slice(0,20) %}       
-         <div class="card">      
-         <div class = "col-md-8">
-            {% if anime.small_image_url %}
-              <img src={{anime.small_image_url}} class="card-img-top" alt="...">
-            {% else %}
-            <img src="C:\wamp\www\pandanim\public\CSS\NoImagePanda" class="card-img-top" alt="...">
-            {% endif %}
-              <div class="card-body">
-                <h5> {{anime.title}} </h5>
-                  <p class="card-text"> - {{anime.episodes}} ep, {{anime.duration}}  </p>
-                  <p class="card-text"> - {{anime.synopsis | slice(start,150) }} ... </p>
-                   <a href="#" class="btn btn-primary">Show more</a>
-              </div>  
-              </div>     
+<div class="container">
+<div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" >
+            {% for anime in data %} 
+              {% if anime.mal_score >= 9 %}            
+         <div class="card text-white bg-dark mt-5" style = "margin-left : 0.25rem">      
+             <div class = "col">
+              {% if anime.small_image_url %}
+                  <img src={{anime.small_image_url}} class="card-img-top" alt="...">
+             {% else %}
+             <img src="https://thumbs.gfycat.com/GrandiosePalatableHart.webp" class="card-img-top" alt="...">
+             {% endif %}
+            
+                  <div class="card-body">
+                   <h5 class = "police"> {{anime.title}} </h5>
+                      <p class="card-text"> - {{anime.type}} {{anime.episodes}} ep, {{anime.duration}} 
+                      <p class="card-text"> - {{anime.rating}}</p>
+                      <p class="card-text"> - {{anime.mal_score}}/10</p>
+                      <p class="card-text"> - {{anime.synopsis | slice(start,150) }} ... </p>
+                      <a href="#" class="btn btn-primary" >Show more</a> 
+                 </div> 
+                
+              </div> 
+                
           </div>
+          
+        {% endif %}
         {% endfor %}    
+</div>
 </div>
     
 {% endif %}
 </html>
 {% endblock %}
-

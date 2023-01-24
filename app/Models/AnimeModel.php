@@ -28,8 +28,7 @@ class AnimeModel extends Model
         'rating',
         'synopsis',
         'broadcast',
-        'studios',
-        'genres'
+        'studios'
     ];	
     protected $returnType = 'App\Entities\Anime_entity';
 }

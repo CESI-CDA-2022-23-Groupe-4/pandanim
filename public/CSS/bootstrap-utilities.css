@@ -693,6 +693,9 @@
 .border-opacity-100 {
   --bs-border-opacity: 1;
 }
+.w-22 {
+  width: 22% !important;
+}
 
 .w-25 {
   width: 25% !important;

@@ -1,39 +1,13 @@
-/** ul {
-    list-style-type : none;
-  }
+@font-face {
 
-li a{
-    background-color: lightsteelblue;
-    display: table;
-    font-size: 13px;
-    font-weight: 700;
-    height: 24px;
-    padding: 10px 50px 0px;
-    text-align: top;
-    text-decoration: none;
-    margin-bottom: 0;
-    margin-left: 150px;
-    margin-right: auto;
-    position: relative;
-    width: 100%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Manga";
+  src: local("Player-Regular"),
+       local("Player-Bold"),
+       url(Player-Regular.ttf);
+  font-weight: bold;
 }
 
-  ul li{
-    display: table-cell;
-  }
 
-  .mr-sm-2, .my-sm-0{
-    text-align: center;
-    margin-top: -95px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    @media screen and (min-width: 1200px) {
-    margin-top: -105px;
-    }
+.police{
+  font-family: 'Manga';
 }
-    
-    .collapse.navbar-collapse {
-
-    }
-
-  **/
