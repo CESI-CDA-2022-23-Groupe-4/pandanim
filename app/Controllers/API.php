@@ -46,4 +46,6 @@ class API extends BaseController
         }
         return redirect()->to('/');
     }
+
+    
 }
