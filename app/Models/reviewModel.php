@@ -17,7 +17,7 @@ class ReviewModel extends Model
         'updated_at'
     ];	
 
-    public function test(){
+    public function joinR(){
         $builder = $db->table('review');
         $builder->select('*');
         $builder->from('review');

@@ -10,7 +10,7 @@ class Review extends BaseController
     public function __construct(){
     }
 
-    public function findAllAnimes()
+    public function findAllReview()
     {
         $reviewModel = new ReviewModel();
         $reviews = $reviewModel->findAll();
@@ -19,6 +19,13 @@ class Review extends BaseController
         ];
         
         return $reviews;
+    }
+
+    public function ListeR()
+    {
+        $review = new Review();
+        $this->_data = $review->findAllReview();
+        $this->display('review');
     }
 
     public function addReview(){
