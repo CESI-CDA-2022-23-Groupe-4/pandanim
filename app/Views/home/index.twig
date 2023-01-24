@@ -1,20 +1,30 @@
 {% extends "base.twig" %}
 
 {% block body %}
-    <h1>test</h1>
-<p>Cela fonctionne parfaitement</p>
-
-   {# {{ data.objuser.username }}
-   {{ data.objuser.email }}
-   {{ data.objuser.password }} #}
-
-{% if data is defined%}
-    <ul>
-        {% for anime in data %}
-            <li>{{anime.title}}</li>
-        {% endfor %}
-    </ul>
-    
-{% endif %}
+<div class="bg-dark">
+    <div class="bg-dark container ">
+        {% if data is defined%}
+        <h1 class='text-light'>Liste des épisodes</h1>
+            <table class="table table-striped table-dark">
+                <tr>
+                    <th>Titre</th>
+                    <th>Nombre d'épisodes</th>
+                    <th>année de sortie</th>
+                </tr>
+                {% for anime in data %}
+                    <tr>
+                    <td>{{anime.title}}</td>
+                    <td>{{anime.episodes}}</td>
+                    <td>{{anime.aired_from}}</td>
+                    </tr>
+                    
+                {% endfor %}
+            </table>
+                
+            </ul>
+            
+        {% endif %}
+    </div>
+</div>
 
 {% endblock %}
