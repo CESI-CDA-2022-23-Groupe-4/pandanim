@@ -38,8 +38,6 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/api/(:any)', 'API::$1'); // adds all API functions to /api/ route
 $routes->get('/api/getAnimePage/(:num)', 'API::getAnimePage/$1');  // route for getAnimePage function with page number as parameter
-
-$routes->get('/auth', 'Auth::'.$routes->getDefaultMethod());
 $routes->get('/signin', 'Auth::signin');
 $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
