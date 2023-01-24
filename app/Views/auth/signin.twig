@@ -1,0 +1,49 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+    <h1>Sign In</h1>
+
+{#    <?php#}
+{#        if (count($arrErrors) > 0){#}
+{#    ?>#}
+{#    <div class="error">#}
+{#        <?php#}
+{#                foreach($arrErrors as $strError){#}
+{#                    echo "<p>".$strError."</p>";#}
+{#        }#}
+{#        ?>#}
+{#    </div>#}
+{#    <?php#}
+{#        }#}
+{#    ?>#}
+
+{#    {% if arrErrors | length > 0 %}#}
+
+{#        {% for err in arrErrors %}#}
+
+{#            {{err}}#}
+
+{#        {% endfor %}#}
+
+{#    {% endif %}#}
+
+    {% for err in data.arrErrors %}
+        {{ err }}
+        <br>
+    {% endfor %}
+
+    {{data.form_open|raw}}
+    {{data.form_id|raw}}
+    {{data.label_email|raw}}
+    {{data.form_email|raw}}
+    {{data.label_password|raw}}
+    {{data.form_password|raw}}
+    {{data.label_pass_confirm|raw}}
+    {{data.form_pass_confirm|raw}}
+    {{data.form_submit|raw}}
+    {{data.form_close|raw}}
+
+    <p><a href="{{('/signup')}}" class="btn btn-success">Sign Up</a></p>
+
+{% endblock %}
