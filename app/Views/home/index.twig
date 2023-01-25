@@ -8,10 +8,13 @@
 {% endblock %}
 
 {% block body %}
-	{% set cardWeight = 0 %}
 
 	{% if data is defined %}
 		<div class="container">
+    {{data.searchForm.form_open|raw}}
+    {{data.searchForm.form_search|raw}}
+    {{data.searchForm.form_submit|raw}}
+    {{data.searchForm.form_close|raw}}
 			<div class="row justify-content-center">
 
 				{% for anime in data.animes %}
@@ -40,7 +43,7 @@
 								{{anime.mal_score}}/10 ({{anime.scored_by}})</p>
 							<p class="card-text">
 								-
-								{{anime.synopsis | slice(start,150) }}
+								{{anime.synopsis | slice(0,150) }}
 								...
 							</p>
 
