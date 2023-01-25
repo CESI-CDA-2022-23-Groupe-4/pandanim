@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Entities\Review_entity;
+//use App\Entities\Review_entity;
 use App\Models\ReviewModel;
 
 class Review extends BaseController
@@ -13,7 +13,8 @@ class Review extends BaseController
     public function findAllReview()
     {
         $reviewModel = new ReviewModel();
-        $reviews = $reviewModel->findAll();
+        $reviews = $reviewModel->joinR();
+
         $this->_data = [
             'reviews'=>$reviews
         ];
@@ -25,7 +26,7 @@ class Review extends BaseController
     {
         $review = new Review();
         $this->_data = $review->findAllReview();
-        $this->display('review');
+        $this->display('review/review');
     }
 
     public function addReview(){
@@ -51,15 +52,15 @@ class Review extends BaseController
 
             if ($validation->run($this->request->getPost())){ //on teste la validation du formulaire sur les données
 
-                $objCommentModel = new Comment_model(); // Instanciation du modèle
+                $objReviewModel = new ReviewModel(); // Instanciation du modèle
 
-                $objComment     = new \App\Entities\Comment_entity(); // Instanciation de l'entité
+                $objReview     = new \App\Entities\Review_entity(); // Instanciation de l'entité
 
-                $objComment->fill($this->request->getPost());
+                $objReview->fill($this->request->getPost());
 
-                $objCommentModel->save($objComment); // On sauvegarde l'objet
+                $objReviewModel->save($objReview); // On sauvegarde l'objet
 
-                return redirect()->to('/comment'); // redirection vers l'action par défaut du controller Product
+                return redirect()->to('/review'); // redirection vers l'action par défaut du controller Product
 
             }else{
 
@@ -77,8 +78,65 @@ class Review extends BaseController
       $this->_data['form_submit']    = form_submit("submit", "Envoyer");
       $this->_data['form_close']     = form_close();
     //   echo view('reviews_add', $data);
-      $this->display('review_add');
-    }
+      $this->display('review/review_add');
+}
     
+    public function editReview($intId = null){
+        // Déclare l'utilisation du helper
+        helper('form');
+      
+        // Instanciation du modèle
+        $objReviewModel = new ReviewModel(); 
+
+        // Instanciation de l'entité
+        $objReview     = new \App\Entities\Review_entity();
+      
+        if ($intId){
+            $data['title']      = "Edit Review";
+            $objReview         = $objReviewModel->find($intId);
+        }else{
+            $data['title']      = "Add Review";
+        }
+      
+        // Il faut charger la librairie
+        $validation =  \Config\Services::validation();
+      
+        // On donne des règles de validation
+        // $validation->setRules('comment', 'Comment', 'required');
+
+        $arrErrors = array();
+        // Le formulaire a été envoyé ?
+        if (count($this->request->getPost()) > 0){
+            $objReview->fill($this->request->getPost());
+            //on teste la validation du formulaire sur les données
+            if ($validation->run($this->request->getPost())){
+                // On sauvegarde l'objet
+                $objReviewModel->save($objReview);
+                // redirection vers l'action par défaut du controller Product
+                return redirect()->to('/review');
+            }else{
+                // on récupère les erreurs pour les afficher
+                $arrErrors = $validation->getErrors();
+            }
+        }
+    
+        $this->_data['form_open']      = form_open("review/add");
+        $this->_data['form_id']        = form_hidden("review_id", $objReview->review_id??'', "id='review_id'");
+        $this->_data['label_comment']     = form_label("Comment", "comment");
+        $this->_data['form_comment']      = form_textarea("comment", "", "id='comment'");
+        $this->_data['form_submit']    = form_submit("submit", "Envoyer");
+        $this->_data['form_close']     = form_close();
+        $this->display('review/review_edit');
+    }
+      
+    public function delete($intId){
+	
+        $objReviewModel   = new ReviewModel();
+	
+        $objReviewModel->delete($intId);
+	
+        return redirect()->to('/review');
+	
+    }
     
 }

@@ -16,15 +16,11 @@ class ReviewModel extends Model
         'created_at',
         'updated_at'
     ];	
+    protected $returnType = 'App\Entities\Review_entity';
+    
 
     public function joinR(){
-        $builder = $db->table('review');
-        $builder->select('*');
-        $builder->from('review');
-        $builder->join('user', 'user.id = review.user_id');
-        $builder->join('anime', 'anime.id = review.anime_id');
-        $query = $builder->get();
+        return $this->select('*')->join('user', 'user.id = review.user_id')->join('anime', 'anime.id = review.anime_id')->findAll();
     }
 
-    protected $returnType = 'App\Entities\Review_entity';
 }

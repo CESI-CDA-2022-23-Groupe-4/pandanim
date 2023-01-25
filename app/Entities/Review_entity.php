@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
-class Rewiew_entity extends Entity
+class Review_entity extends Entity
 {
 
 }
