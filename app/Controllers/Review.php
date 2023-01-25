@@ -36,7 +36,7 @@ class Review extends BaseController
         $this->display('review/reviewA');
     }
 
-    public function addReview(){
+    public function addReview(int $anime_id, int $user_id){
         helper('form'); // Déclare l'utilisation du helper
     
       $this->_data['title']          = "Add a Review";
