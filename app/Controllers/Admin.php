@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Entities\User_entity;
-use App\Models\User_model;
+use App\Models\UserModel;
 
 Class Admin extends BaseController {
 
@@ -13,7 +13,7 @@ Class Admin extends BaseController {
         } elseif ($this->session->get('user')->roles != 'ROLE_ADMIN') {
             return redirect()->to('/signin');
         } else {
-            $objUserModel = new User_model();
+            $objUserModel = new UserModel();
             $this->_data = [
                 'user' => $objUserModel->findAll(),
                 'session' => $this->session->get('user')
@@ -28,7 +28,7 @@ Class Admin extends BaseController {
         helper('form');
 
         // Instanciation du modèle
-        $objUserModel = new User_model();
+        $objUserModel = new UserModel();
         // Instanciation de l'entité
         $objUser = $objUserModel->find($intId);
 
@@ -75,7 +75,7 @@ Class Admin extends BaseController {
             $objUser->fill($this->request->getPost());
             //on teste la validation du formulaire sur les données
             if ($validation->run($this->request->getPost())) {
-                if ($this->request->getPost('password') != '') {
+                if (strlen($this->request->getPost('password')) >= 8 ) {
                     $objUser->setPwdHash($objUser->password);
                 }
                 // On modifie l'utilisateur
@@ -101,7 +101,7 @@ Class Admin extends BaseController {
             'label_email' => form_label("Email", "email"),
             'form_email' => form_input("email", $objUser->email??'', "id='email'"),
             'label_password' => form_label("Password", "password"),
-            'form_password' => form_input("password", '', "id='password'"),
+            'form_password' => form_input("password", '', "id='password'", "password"),
             'label_roles' => form_label("Roles", "roles"),
             'form_roles' => form_input("roles", $objUser->roles??'', "id='roles'"),
             'form_submit' => form_submit("submit", "Edit", "class='btn btn-success'"),
@@ -112,7 +112,7 @@ Class Admin extends BaseController {
     }
 
     public function delete($intId){
-        $objUserModel   = new User_model();
+        $objUserModel   = new UserModel();
         $objUserModel->delete($intId);
         return redirect()->to('/admin');
     }
