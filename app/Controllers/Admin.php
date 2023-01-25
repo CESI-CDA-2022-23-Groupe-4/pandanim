@@ -75,8 +75,11 @@ Class Admin extends BaseController {
             $objUser->fill($this->request->getPost());
             //on teste la validation du formulaire sur les données
             if ($validation->run($this->request->getPost())) {
-                if (strlen($this->request->getPost('password')) >= 8 ) {
+                // Vérifier si le mot de passe a été modifié
+                if ($this->request->getPost('password') != '') {
                     $objUser->setPwdHash($objUser->password);
+                } else {
+                    $objUser->password = $objUserModel->find($intId)->password;
                 }
                 // On modifie l'utilisateur
                 $objUserModel->save($objUser);
