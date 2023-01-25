@@ -1,5 +1,7 @@
 {% extends "base.twig" %}
 
+{% block title %}Sign In{% endblock %}
+
 {% block body %}
 
     <h1>Sign In</h1>
@@ -34,16 +36,12 @@
     {% endfor %}
 
     {{data.form_open|raw}}
-    {{data.form_id|raw}}
-    {{data.label_email|raw}}
-    {{data.form_email|raw}}
-    {{data.label_password|raw}}
-    {{data.form_password|raw}}
-    {{data.label_pass_confirm|raw}}
-    {{data.form_pass_confirm|raw}}
-    {{data.form_submit|raw}}
-    {{data.form_close|raw}}
-
-    <p><a href="{{('/signup')}}" class="btn btn-success">Sign Up</a></p>
+    <div class="mt-2">{{data.label_email|raw}}</div>
+    <div>{{data.form_email|raw}}</div>
+    <div class="mt-2">{{data.label_password|raw}}</div>
+    <div>{{data.form_password|raw}}</div>
+    <div class="mt-2">{{data.form_submit|raw}}</div>
+    <div class="mt-2">{{data.form_close|raw}}</div>
+    <p><a href="{{('/signup')}}" class="btn btn-outline-success">Sign Up</a></p>
 
 {% endblock %}
