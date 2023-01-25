@@ -9,7 +9,13 @@ class API extends BaseController
     /// Gets the requested anime page from Jikan API and returns it as JSON
     public function getAnimePage($page = 1) {
         $response = [];
-        $data = json_decode(file_get_contents('https://api.jikan.moe/v4/anime?page='.$page), true);
+        $arrContextOptions=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        );
+        $data = json_decode(file_get_contents('https://api.jikan.moe/v4/anime?page='.$page, false, stream_context_create($arrContextOptions)), true);
         $response = array_merge($response, $data['data']);
         if ($response === false) {
             return $this->response->setStatusCode(404, 'Page not found');
@@ -40,4 +46,6 @@ class API extends BaseController
         }
         return redirect()->to('/');
     }
+
+    
 }

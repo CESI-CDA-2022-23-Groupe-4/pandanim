@@ -10,6 +10,7 @@
         "smarty/smarty": "^4.3",
         "kenjis/codeigniter-ss-twig": "^4.1",
         "twig/twig": "^3.5",
+        "twbs/bootstrap": "^5.2",
         "kint-php/kint": "^5.0"
     },
     "require-dev": {
