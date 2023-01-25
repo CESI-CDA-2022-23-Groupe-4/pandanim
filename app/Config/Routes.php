@@ -43,6 +43,12 @@ $routes->get('/signin', 'Auth::signin');
 $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
 $routes->post('/signup', 'Auth::signup');
+$routes->get('/review', 'Review::ListeR');
+$routes->post('/review', 'Review::ListeR');
+$routes->get('/review/add', 'Review::addReview');
+$routes->post('/review/add', 'Review::addReview');
+$routes->get('/review/edit/(:num)/(:num)', 'Review::editReview');
+$routes->post('/review/edit/(:num)/(:num)', 'Review::editReview');
 $routes->get('/signout', 'Auth::signout');
 $routes->get('/profil', 'Auth::viewProfil');
 
