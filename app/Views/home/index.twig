@@ -1,30 +1,52 @@
 {% extends "base.twig" %}
 
-{% block body %}
-<div class="bg-dark">
-    <div class="bg-dark container ">
-        {% if data is defined%}
-        <h1 class='text-light'>Liste des épisodes</h1>
-            <table class="table table-striped table-dark">
-                <tr>
-                    <th>Titre</th>
-                    <th>Nombre d'épisodes</th>
-                    <th>année de sortie</th>
-                </tr>
-                {% for anime in data %}
-                    <tr>
-                    <td>{{anime.title}}</td>
-                    <td>{{anime.episodes}}</td>
-                    <td>{{anime.aired_from}}</td>
-                    </tr>
-                    
-                {% endfor %}
-            </table>
-                
-            </ul>
-            
-        {% endif %}
-    </div>
-</div>
+{% block title %}Home{% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{ base_url() }}/CSS/home.css">
 {% endblock %}
+
+{% block body %}
+  <!-- <html lang="en" data-bs-theme="dark">
+  <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Titre de l'animé</h5>
+      <p class="card-text">Petite description de l'anime avec son genre, nbr d'épisodes, durée etc.</p>
+      <a href="#" class="btn btn-primary">Aller sur sa fiche détaillée</a>
+    </div>
+  </div>
+  -->
+  {# <pre>
+    {{ dump(data)}}
+  </pre> #}
+  {% set cardWeight = 0 %}
+  {% if data is defined %}
+  <div class="row row-cols-1 row-cols-md-4 hover-overlay" >
+    {% for anime in data.animes %}       
+      <div class="card-bg m-2">
+        <div class="card">      
+          <div class = "col-md-8">
+            {% if anime.small_image_url %}
+              <img src={{anime.small_image_url}} class="card-img-top" alt="{{anime.title}} tumbnail">
+            {% else %}
+            <img src="{{ base_url() }}/CSS/NoImagePanda.png" class="card-img-top" alt="No image available">No image available</img>
+            {% endif %}
+              <a href="{{ base_url() }}/anime/details/{{ anime.id }}" class="stretched-link"></a>
+              <div class="card-body">
+                <h5> {{anime.title}} </h5>
+                <p class="card-text"> - {{anime.episodes}} ep, {{anime.duration}}  </p>
+                <p class="card-text"> - {{anime.synopsis | slice(0,150) }} ... </p>
+            </div>  
+          </div> 
+          {# <div class="hover-overlay"></div> #}
+        </div>
+      </div>
+      
+    {% endfor %}    
+  </div>
+
+  {% endif %}
+  </html>
+{% endblock %}
+
