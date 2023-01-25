@@ -28,9 +28,5 @@ class Home extends BaseController
         $this->display('home/details');
     }
     
-    public function search($title = ""){
-        $animeModel = new AnimeModel();
-        $this->_data = $animeModel->find($title);
-        $this->display('home/details');
-    }
+    
 }

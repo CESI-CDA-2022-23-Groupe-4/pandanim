@@ -4,4 +4,7 @@
         color:darkred;
         font-size: 24px;
     }
+    .card:hover {
+        filter : brightness(1.2);
+    }
 

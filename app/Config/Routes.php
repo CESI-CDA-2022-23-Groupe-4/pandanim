@@ -38,11 +38,19 @@ $routes->set404Override();
 $routes->get('/', 'Home::index'); // adds all API functions to /api/ route
 $routes->get('/api/getAnimePage/(:num)', 'API::getAnimePage/$1');  // route for getAnimePage function with page number as parameter
 $routes->get('/anime/details/(:num)', 'Home::animeDetails/$1');  // route for anime detail with page anime's id as parameter
-$routes->get('/anime/search/(:title)', 'Home::animeDetails/$1');
+// $routes->get('/search', 'Home::search');
 $routes->get('/signin', 'Auth::signin');
 $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
 $routes->post('/signup', 'Auth::signup');
+$routes->get('/review', 'Review::ListeR');
+$routes->post('/review', 'Review::ListeR');
+$routes->get('/review/add', 'Review::addReview');
+$routes->post('/review/add', 'Review::addReview');
+$routes->get('/review/edit/(:num)/(:num)', 'Review::editReview');
+$routes->post('/review/edit/(:num)/(:num)', 'Review::editReview');
+$routes->get('/signout', 'Auth::signout');
+$routes->get('/profil', 'Auth::viewProfil');
 
 /*
  * --------------------------------------------------------------------

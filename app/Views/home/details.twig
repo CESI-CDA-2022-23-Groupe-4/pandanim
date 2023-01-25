@@ -6,6 +6,7 @@
 
 {% block body %}
 <div class="d-flex flex-column align-items-center bg-dark text-white mt-4 container">
+<div class="d-flex flex-column align-items-center">
     <h1 class='mt-3 mb-4'>{{data.title}}</h1>
 
         <img src="{{data.large_image_url}}" alt="{{data.title}}'s image" width='800px' class='mb-5'>
@@ -26,6 +27,7 @@
             </div>
             <div class="tab-pane fade " id="info-pane" role="tabpanel" aria-labelledby="info" tabindex="0">
                 <table class="table striped text-white">
+
                     <tr>
                         <td>Type</td>
                         <td>{{data.type}}</td>
