@@ -9,7 +9,7 @@
 | last_name  | varchar(40)       | Last name         |            |
 | email      | varchar(255)      | Email address     | unique     |
 | password   | varchar(128)      | Password          | hashed (SHA-512) |
-| roles      | array             | Roles             |            |
+| roles      | varchar(60)       | Roles             |            |
 
 ## Table: `review`
 | Name     | Type             | Description   | Comment |

@@ -44,6 +44,12 @@ $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
 $routes->post('/signup', 'Auth::signup');
 
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/edit/(:num)', 'Admin::edit/$1');
+$routes->post('/admin/edit/(:num)', 'Admin::edit/$1');
+$routes->get('/admin/delete/(:num)', 'Admin::delete/$1');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

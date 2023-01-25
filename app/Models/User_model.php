@@ -10,7 +10,7 @@ class User_model extends Model
     // Nom du champ de la clé primaire
     protected $primaryKey    = 'id';
     // Champs utilisables
-    protected $allowedFields = ['username', 'firstname', 'lastname', 'email', 'password', 'role'];
+    protected $allowedFields = ['username', 'firstname', 'lastname', 'email', 'password', 'roles'];
 
     // Type de retour => Chemin de l'entité à utiliser
     protected $returnType    = 'App\Entities\User_entity';

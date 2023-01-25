@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>Username</td>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Email</td>
+            <td>Roles</td>
+            <td>Modifer</td>
+            <td>Delete</td>
+        </tr>
+    {% for user in data.user %}
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles }}</td>
+        <td><a href="/admin/edit/{{ user.id }}" class="btn btn-outline-warning">Modifier</a></td>
+        <td><a href="/admin/delete/{{ user.id }}" class="btn btn-outline-danger ">Supprimer</a></td>
+    </table>
+{% endfor %}
+
+{% endblock body %}
