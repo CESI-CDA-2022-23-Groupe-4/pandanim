@@ -55,7 +55,7 @@ Class Auth extends BaseController {
                 $objUser = $objUserModel->where('email', $objUser->email)->first();
                 if ($objUser) {
                     // on vérifie que le password est correct
-                    if (password_verify(hash('sha512', $this->request->getPost()["password"]), $objUser->password)) {
+                    if (hash('sha512', $this->request->getPost()["password"]) == $objUser->password) {
                         // on stocke l'objet en session
                         $this->session->set('user', $objUser);
                         // on redirige vers la dernière page consultée
