@@ -4,7 +4,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top table-responsive ">
   <div class="container">
-    <a class="navbar-brand ms-1" href="#">
+    <a class="navbar-brand ms-1" href="{{('/')}}">
       <img src="https://pbs.twimg.com/profile_images/748135398728146944/2w8jnGOt_400x400.jpg" alt="..." height="100">
     </a>
     <p class = "navbar-nav ms-auto me-4 police" style = "color : white; font-size : 175%" > Pandanim </p>
@@ -20,19 +20,24 @@
         
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{('/')}}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Users</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+         {% if  not data.objuser  %}
+          <a class="nav-link" href= "{{('/signin')}}">Login</a>
+          {% else %}
+          <a class="nav-link" href= "{{('/signout')}}">Logout</a>
+          {% endif %}
         </li>
       </ul>
-          <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form action="{{base_url}}/anime/details/{{anime.id}}" class="d-flex">
+      <input id="btn-search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+    
     </div>
   </div>
 </html>
