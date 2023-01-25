@@ -1,14 +1,21 @@
 {% extends "base.twig" %}
 
-{% block title %}Home{% endblock %}
-
-{% block head %}
-  <link rel="stylesheet" href="{{ base_url() }}/CSS/home.css">
-{% endblock %}
-
 {% block body %}
+<!-- <html lang="en" data-bs-theme="dark">
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Titre de l'animé</h5>
+    <p class="card-text">Petite description de l'anime avec son genre, nbr d'épisodes, durée etc.</p>
+    <a href="#" class="btn btn-primary">Aller sur sa fiche détaillée</a>
+  </div>
+</div>
+-->
+{{data.searchForm.form_open|raw}}
+{{data.searchForm.form_search|raw}}
+{{data.searchForm.form_submit|raw}}
+{{data.searchForm.form_close|raw}}
 {% set cardWeight = 0 %}
-
 {% if data is defined %}
 <div class="container ms-0">
 <div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" style = "width : 145%" >
@@ -41,7 +48,6 @@
 </div>
     
 {% endif %}
-  
 </html>
 {% endblock %}
 
