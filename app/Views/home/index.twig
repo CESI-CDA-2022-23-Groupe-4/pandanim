@@ -11,12 +11,15 @@
 
 	{% if data is defined %}
 		<div class="container">
-    {{data.searchForm.form_open|raw}}
-    {{data.searchForm.form_search|raw}}
-    {{data.searchForm.form_submit|raw}}
-    {{data.searchForm.form_close|raw}}
 			<div class="row justify-content-center">
-
+        <div class="col-5 mb-3">
+          {{data.searchForm.form_open|raw}}
+          {{data.searchForm.form_search|raw}}
+          {{data.searchForm.form_submit|raw}}
+          {{data.searchForm.form_close|raw}}
+        </div>
+      </div>
+			<div class="row justify-content-center">
 				{% for anime in data.animes %}
 					<div class="card m-3 p-0 col-3">
 						{% if anime.small_image_url %}
