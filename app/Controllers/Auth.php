@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 use App\Entities\User_entity;
-use App\Models\User_model;
+use App\Models\UserModel;
 
 Class Auth extends BaseController {
 
     public function signin() {
 //        // Instanciation du modèle
-//        $objUserModel = new User_model();
+//        $objUserModel = new UserModel();
 //
 //        // On fournit les variables pour la vue
 //        $this->_data = [
@@ -22,7 +22,7 @@ Class Auth extends BaseController {
         helper('form');
 
         // Instanciation du modèle
-        $objUserModel = new User_model();
+        $objUserModel = new UserModel();
         // Instanciation de l'entité
         $objUser = new User_entity();
 
@@ -80,7 +80,7 @@ Class Auth extends BaseController {
             'form_email' => form_input("email", '', "id='email'"),
             'label_password' => form_label("Password", "password"),
             'form_password' => form_input("password", '', "id='password'", "password"),
-            'form_submit' => form_submit("submit", "Signin", "class='btn btn-success'"),
+            'form_submit' => form_submit("submit", "Sign In", "class='btn btn-success'"),
             'form_close' => form_close(),
         ];
 
@@ -94,7 +94,7 @@ Class Auth extends BaseController {
         helper('form');
 
         // Instanciation du modèle
-        $objUserModel = new User_model();
+        $objUserModel = new UserModel();
         // Instanciation de l'entité
         $objUser = new User_entity();
 
@@ -150,6 +150,8 @@ Class Auth extends BaseController {
             if ($validation->run($this->request->getPost())) {
                 // on hash le password
                 $objUser->setPwdHash($objUser->password);
+                // on donne le rôle par défault à l'utilisateur
+                $objUser->setDefaultRole();
                 // On sauvegarde l'objet
                 $objUserModel->save($objUser);
                 // redirection vers l'action par défaut du controller Register
