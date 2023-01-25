@@ -1,0 +1,32 @@
+{% extends "base.twig" %}
+
+{% block title %} Admin {% endblock %}
+
+{% block body %}
+
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Modifer</th>
+            <th>Delete</th>
+        </tr>
+    {% for user in data.user %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles }}</td>
+        <td><a href="/admin/edit/{{ user.id }}" class="btn btn-outline-warning">Modifier</a></td>
+        <td><a href="/admin/delete/{{ user.id }}" class="btn btn-outline-danger ">Supprimer</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endblock body %}

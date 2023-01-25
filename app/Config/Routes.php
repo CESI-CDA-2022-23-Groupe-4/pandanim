@@ -52,6 +52,12 @@ $routes->post('/review/edit/(:num)/(:num)', 'Review::editReview');
 $routes->get('/signout', 'Auth::signout');
 $routes->get('/profil', 'Auth::viewProfil');
 
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/edit/(:num)', 'Admin::edit/$1');
+$routes->post('/admin/edit/(:num)', 'Admin::edit/$1');
+$routes->get('/admin/delete/(:num)', 'Admin::delete/$1');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

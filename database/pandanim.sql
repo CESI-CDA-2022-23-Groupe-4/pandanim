@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `lastname` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(128) NOT NULL COMMENT 'hashed (SHA-512)',
-  `roles` JSON NOT NULL COMMENT '["ROLE_USER", "ROLE_ADMIN", "ROLE_SUPER_ADMIN"]',
+  `roles` varchar(60) NOT NULL COMMENT '["ROLE_USER", "ROLE_ADMIN", "ROLE_SUPER_ADMIN", "ROLE_MODERATOR"]',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
