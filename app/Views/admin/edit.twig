@@ -1,5 +1,7 @@
 {% extends "base.twig" %}
 
+{% block title %} Admin - Edit User {% endblock %}
+
 {% block body %}
 
     <h1>Edit</h1>
@@ -10,20 +12,20 @@
     {% endfor %}
 
     {{data.form_open|raw}}
-    {{data.form_id|raw}}
-    {{data.label_username|raw}}
-    {{data.form_username|raw}}
-    {{data.label_firstname|raw}}
-    {{data.form_firstname|raw}}
-    {{data.label_lastname|raw}}
-    {{data.form_lastname|raw}}
-    {{data.label_email|raw}}
-    {{data.form_email|raw}}
-    {{data.label_password|raw}}
-    {{data.form_password|raw}}
-    {{data.label_roles|raw}}
-    {{data.form_roles|raw}}
-    {{data.form_submit|raw}}
-    {{data.form_close|raw}}
+    <div>{{data.form_id|raw}}</div>
+    <div>{{data.label_username|raw}}</div>
+    <div class="mb-3">{{data.form_username|raw}}</div>
+    <div>{{data.label_firstname|raw}}</div>
+    <div class="mb-3">{{data.form_firstname|raw}}</div>
+    <div>{{data.label_lastname|raw}}</div>
+    <div class="mb-3">{{data.form_lastname|raw}}</div>
+    <div>{{data.label_email|raw}}</div>
+    <div class="mb-3">{{data.form_email|raw}}</div>
+    <div>{{data.label_password|raw}}</div>
+    <div class="mb-3">{{data.form_password|raw}}</div>
+    <div>{{data.label_roles|raw}}</div>
+    <div class="mb-3">{{data.form_roles|raw}}</div>
+    <div class="mb-3">{{data.form_submit|raw}}</div>
+    <div class="mb-3">{{data.form_close|raw}}</div>
 
 {% endblock %}
