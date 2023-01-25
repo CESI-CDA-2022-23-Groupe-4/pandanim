@@ -1,47 +1,55 @@
 {% extends "base.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{ base_url() }}/CSS/home.css">
+	<link rel="stylesheet" href="{{ base_url() }}/CSS/home.css">
 {% endblock %}
 
 {% block body %}
-{% set cardWeight = 0 %}
+	{% set cardWeight = 0 %}
 
-{% if data is defined %}
-<div class="container ms-0">
-<div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" style = "width : 145%" >
-            {% for anime in data.animes|sort((a,b) => b.scored_by <=> a.scored_by) %} 
-              {% if anime.mal_score >= 9 or anime.mal_score >= 8 and anime.scored_by >= 500000 %}            
-         <div class="card text-white bg-dark mt-5 " style = "margin-left : 0.25rem">      
-             <div class = "col">
-              {% if anime.small_image_url %}
-                  <img src={{anime.small_image_url}} class="card-img-top" alt="...">
-             {% else %}
-             <img src="https://thumbs.gfycat.com/GrandiosePalatableHart.webp" class="card-img-top" alt="...">
-             {% endif %}
-            <a href= "{{base_url}}/anime/details/{{anime.id}}" style = "color : white; text-decoration : none">
-                  <div class="card-body">
-                   <h5 class = "police"> {{anime.title}} </h5>
-                      <p class="card-text"> - {{anime.type}} {{anime.episodes}} ep, {{anime.duration}} 
-                      <p class="card-text"> - {{anime.rating}} </p>
-                      <p class="card-text"> - {{anime.mal_score}}/10 ({{anime.scored_by}})</p>
-                      <p class="card-text"> - {{anime.synopsis | slice(start,150) }} ... </p>
-                      
-                 </div> 
-                
-              </div> 
-                </a>
-          </div>
-          
-        {% endif %}
-        {% endfor %}    
-</div>
-</div>
-    
-{% endif %}
-  
-</html>
+	{% if data is defined %}
+		<div class="container">
+			<div class="row justify-content-center">
+
+				{% for anime in data.animes %}
+					<div class="card m-3 p-0 col-3">
+						{% if anime.small_image_url %}
+							<img src={{anime.small_image_url}} class="card-img-top" alt="{{anime.name}} image">
+						{% else %}
+							<img src="https://thumbs.gfycat.com/GrandiosePalatableHart.webp" class="card-img-top" alt="image not found">
+						{% endif %}
+						<div class="card-body">
+							<h5 class="police">
+								{{anime.title}}
+							</h5>
+							<p class="card-text">
+								-
+								{{anime.type}}
+								{{anime.episodes}}
+								ep,{{anime.duration}}
+							</p>
+							<p class="card-text">
+								-
+								{{anime.rating}}
+							</p>
+							<p class="card-text">
+								-
+								{{anime.mal_score}}/10 ({{anime.scored_by}})</p>
+							<p class="card-text">
+								-
+								{{anime.synopsis | slice(start,150) }}
+								...
+							</p>
+
+							<a href="{{base_url}}/anime/details/{{anime.id}}" class="stretched-link" style="color : white; text-decoration : none"></a>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}
-
