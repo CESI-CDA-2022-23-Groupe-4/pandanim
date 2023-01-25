@@ -28,8 +28,5 @@ class Home extends BaseController
         $this->display('home/details');
     }
     
-    public function search(){
-        $request = new IncomingRequest('get');
-        dd($request->getGet());
-    }
+    
 }
