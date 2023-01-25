@@ -29,6 +29,13 @@ class Review extends BaseController
         $this->display('review/review');
     }
 
+    public function ListeRadmin()
+    {
+        $review = new Review();
+        $this->_data = $review->findAllReview();
+        $this->display('review/reviewA');
+    }
+
     public function addReview(){
         helper('form'); // Déclare l'utilisation du helper
     

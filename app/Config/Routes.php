@@ -45,6 +45,8 @@ $routes->get('/signup', 'Auth::signup');
 $routes->post('/signup', 'Auth::signup');
 $routes->get('/review', 'Review::ListeR');
 $routes->post('/review', 'Review::ListeR');
+$routes->get('/review/a', 'Review::ListeRadmin');
+$routes->post('/review/a', 'Review::ListeRamin');
 $routes->get('/review/add', 'Review::addReview');
 $routes->post('/review/add', 'Review::addReview');
 $routes->get('/review/edit/(:num)/(:num)', 'Review::editReview/$1/$2');
