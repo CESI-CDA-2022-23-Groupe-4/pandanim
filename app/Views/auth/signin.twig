@@ -1,0 +1,48 @@
+{% extends "base.twig" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block body %}
+<div class = "container ms-auto mt-5 bg-dark text-white" style = "box-sizing : content-box">
+<div class = "row justify-content-center row-cols-1 row-cols-md-1 g-4 ms-3">
+    <h1>Sign In</h1>
+
+{#    <?php#}
+{#        if (count($arrErrors) > 0){#}
+{#    ?>#}
+{#    <div class="error">#}
+{#        <?php#}
+{#                foreach($arrErrors as $strError){#}
+{#                    echo "<p>".$strError."</p>";#}
+{#        }#}
+{#        ?>#}
+{#    </div>#}
+{#    <?php#}
+{#        }#}
+{#    ?>#}
+
+{#    {% if arrErrors | length > 0 %}#}
+
+{#        {% for err in arrErrors %}#}
+
+{#            {{err}}#}
+
+{#        {% endfor %}#}
+
+{#    {% endif %}#}
+
+    {% for err in data.arrErrors %}
+        {{ err }}
+        <br>
+    {% endfor %}
+
+    {{data.form_open|raw}}
+    <div class="mt-2">{{data.label_email|raw}}</div>
+    <div>{{data.form_email|raw}}</div>
+    <div class="mt-2">{{data.label_password|raw}}</div>
+    <div>{{data.form_password|raw}}</div>
+    <div class="mt-2">{{data.form_submit|raw}}</div>
+    <div class="mt-2">{{data.form_close|raw}}</div>
+    <p><a href="{{('/signup')}}" class="btn btn-outline-success">Sign Up</a></p>
+
+{% endblock %}

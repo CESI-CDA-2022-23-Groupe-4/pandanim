@@ -1,10 +1,53 @@
 {% extends "base.twig" %}
 
-
 {% block body %}
-    <h1>test</h1>
-<p>Cela fonctionne parfaitement</p>
-<p>{{test}}</p>
+<!-- <html lang="en" data-bs-theme="dark">
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Titre de l'animé</h5>
+    <p class="card-text">Petite description de l'anime avec son genre, nbr d'épisodes, durée etc.</p>
+    <a href="#" class="btn btn-primary">Aller sur sa fiche détaillée</a>
+  </div>
+</div>
+-->
+{{data.searchForm.form_open|raw}}
+{{data.searchForm.form_search|raw}}
+{{data.searchForm.form_submit|raw}}
+{{data.searchForm.form_close|raw}}
+{% set cardWeight = 0 %}
+{% if data is defined %}
+<div class="container ms-0">
+<div class="row justify-content-center row-cols-1 row-cols-md-5 g-4" style = "width : 145%" >
+            {% for anime in data.animes|sort((a,b) => b.scored_by <=> a.scored_by) %} 
+              {% if anime.mal_score >= 9 or anime.mal_score >= 8 and anime.scored_by >= 500000 %}            
+         <div class="card text-white bg-dark mt-5 " style = "margin-left : 0.25rem">      
+             <div class = "col">
+              {% if anime.small_image_url %}
+                  <img src={{anime.small_image_url}} class="card-img-top" alt="...">
+             {% else %}
+             <img src="https://thumbs.gfycat.com/GrandiosePalatableHart.webp" class="card-img-top" alt="...">
+             {% endif %}
+            <a href= "{{base_url}}/anime/details/{{anime.id}}" style = "color : white; text-decoration : none">
+                  <div class="card-body">
+                   <h5 class = "police"> {{anime.title}} </h5>
+                      <p class="card-text"> - {{anime.type}} {{anime.episodes}} ep, {{anime.duration}} 
+                      <p class="card-text"> - {{anime.rating}} </p>
+                      <p class="card-text"> - {{anime.mal_score}}/10 ({{anime.scored_by}})</p>
+                      <p class="card-text"> - {{anime.synopsis | slice(start,150) }} ... </p>
+                      
+                 </div> 
+                
+              </div> 
+                </a>
+          </div>
+          
+        {% endif %}
+        {% endfor %}    
+</div>
+</div>
+    
+{% endif %}
+</html>
 {% endblock %}
-
 

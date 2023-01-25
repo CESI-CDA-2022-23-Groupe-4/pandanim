@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block body %}
+<div class = "container ms-auto mt-5 bg-dark text-white">
+<div class = "row justify-content-center row-cols-3 row-cols-md-6 g-4" width= "500px">
+
+    {% for err in data.arrErrors %}
+        {{ err }}
+        <br>
+    {% endfor %}
+
+    {{data.form_open|raw}}
+    <div class="mt-2">{{data.label_username|raw}}
+    <div>{{data.form_username|raw}}</div>
+    <div class="mt-2">{{data.label_firstname|raw}}</div>
+    <div>{{data.form_firstname|raw}}</div>
+    <div class="mt-2">{{data.label_lastname|raw}}</div>
+    <div>{{data.form_lastname|raw}}</div>
+    <div class="mt-2">{{data.label_email|raw}}</div>
+    <div>{{data.form_email|raw}}</div>
+    <div class="mt-2">{{data.label_password|raw}}</div>
+    <div>{{data.form_password|raw}}</div>
+    <div class="mt-2">{{data.label_pass_confirm|raw}}</div>
+    <div>{{data.form_pass_confirm|raw}}</div>
+    <div class="mt-2">{{data.form_submit|raw}}</div>
+    <div class="mt-2">{{data.form_close|raw}}</div>
+
+    <p><a href="{{('/signin')}}" class="btn btn-outline-success">Sign In</a></p>
+{% endblock %}

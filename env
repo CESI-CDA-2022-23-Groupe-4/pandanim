@@ -20,7 +20,7 @@
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = ''
+# app.baseURL = 'http://localhost:80'
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
@@ -40,7 +40,7 @@
 #--------------------------------------------------------------------
 
 # database.default.hostname = localhost
-# database.default.database = ci4
+# database.default.database = pandanim
 # database.default.username = root
 # database.default.password = root
 # database.default.DBDriver = MySQLi
@@ -48,7 +48,7 @@
 # database.default.port = 3306
 
 # database.tests.hostname = localhost
-# database.tests.database = ci4_test
+# database.tests.database = pandanim_test
 # database.tests.username = root
 # database.tests.password = root
 # database.tests.DBDriver = MySQLi

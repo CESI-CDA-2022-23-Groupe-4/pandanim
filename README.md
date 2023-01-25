@@ -1,4 +1,7 @@
-# CodeIgniter 4 Application Starter
+# Pandanim in CodeIgniter 4
+## API : [Jikan 4](https://jikan.moe/)
+
+[API docs](https://docs.api.jikan.moe/)
 
 ## What is CodeIgniter?
 

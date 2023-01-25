@@ -1,0 +1,35 @@
+
+{% block navbar %}
+<html lang="en" data-bs-theme="dark">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container ms-0">
+    <div id="pandanim-logo">
+      <a class="navbar-brand" href="{{ base_url() }}">
+        <img src="{{ base_url() }}/CSS/2w8jnGOt_400x400.jpg" alt="Pandanim logo" height="100">
+      </a>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{('/')}}">Home</a>
+     
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ base_url() }}">User</a>
+       
+         <li class="nav-item">
+         {% if  not data.objuser  %}
+          <a class="nav-link" href= "{{('/signin')}}">Login</a>
+          {% else %}
+          <a class="nav-link" href= "{{('/signout')}}">Logout</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+</html>
+  {% endblock %}
