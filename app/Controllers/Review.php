@@ -43,6 +43,7 @@ class Review extends BaseController
         // On donne des règles de validation une à une ou à travers d'un tableau (setRules)
 
         $validation->setRule('comment', 'Comment', 'required');
+        $validation->setRule('score', 'Score', 'required');
 
 
 
@@ -73,6 +74,8 @@ class Review extends BaseController
         $data['arrErrors'] 		= $arrErrors;
 
       $this->_data['form_open']      = form_open("review/add");
+      $this->_data['label_score']     = form_label("Score", "score");
+      $this->_data['form_score']      = form_input("score", "", "id='score'");
       $this->_data['label_comment']     = form_label("Comment", "comment");
       $this->_data['form_comment']      = form_textarea("comment", "", "id='comment'");
       $this->_data['form_submit']    = form_submit("submit", "Envoyer");
@@ -125,6 +128,8 @@ class Review extends BaseController
     
         $this->_data['form_open']      = form_open("review/edit/$anime_id/$user_id");
         $this->_data['form_id']        = form_hidden("review_id", $objReview->review_id??'', "id='review_id'");
+        $this->_data['label_score']     = form_label("Score", "score");
+        $this->_data['form_score']      = form_input("score", "", "id='score'");
         $this->_data['label_comment']     = form_label("Comment", "comment");
         $this->_data['form_comment']      = form_textarea("comment", "", "id='comment'");
         $this->_data['form_submit']    = form_submit("submit", "Envoyer");
