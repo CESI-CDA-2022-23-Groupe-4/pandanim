@@ -7,7 +7,6 @@ use App\Models\User_model;
 Class Auth extends BaseController {
 
     public function signin() {
-
 //        // Instanciation du modèle
 //        $objUserModel = new User_model();
 //
@@ -59,8 +58,8 @@ Class Auth extends BaseController {
                     if (password_verify(hash('sha512', $this->request->getPost()["password"]), $objUser->password)) {
                         // on stocke l'objet en session
                         $this->session->set('user', $objUser);
-                        // redirection vers l'action par défaut du controller Register
-                        return redirect()->to('/');
+                        // on redirige vers la dernière page consultée
+                        return redirect()->to($this->session->get('last_page'));
                     } else {
                         $arrErrors['password'] = 'Le mot de passe est incorrect';
                     }
@@ -182,5 +181,23 @@ Class Auth extends BaseController {
         ];
 
         $this->display('auth/signup');
+    }
+
+    public function signout()
+    {
+        $this->session->destroy();
+        return redirect()->to('/');
+    }
+
+    public function viewProfil()
+    {
+        $this->_data = [
+            'objuser' => $this->session->get('user')
+        ];
+        if ($this->session->get('user') == null) {
+            $this->session->set('last_page', current_url());
+            return redirect()->to('/signin');
+        }
+        $this->display('auth/profil');
     }
 }

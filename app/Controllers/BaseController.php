@@ -52,7 +52,10 @@ abstract class BaseController extends Controller
         $this->session = \Config\Services::session();
     }
 
-    protected function display($strTpl){
+    protected function display($strTpl) {
+        if (previous_url() != base_url() . '/signin' && previous_url() != base_url() . '/signup') {
+            $this->session->set('last_page', previous_url());
+        }
         $this->twig->display($strTpl,[
             'data'=>$this->_data,
         ]);
