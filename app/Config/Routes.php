@@ -40,7 +40,7 @@ $routes->get('/api/(:any)', 'API::$1'); // adds all API functions to /api/ route
 $routes->get('/api/getAnimePage/(:num)', 'API::getAnimePage/$1');  // route for getAnimePage function with page number as parameter
 $routes->get('/anime/details/(:num)', 'Home::animeDetails/$1');  // route for anime detail with page anime's id as parameter
 $routes->get('/api/getAllanime', 'API::getAllAnime');  // route for getAnimePage function with page number as parameter
-$routes->get('/search', 'Home::search');  // route for getAnimePage function with page number as parameter
+$routes->post('/search', 'Home::search');  // route for getAnimePage function with page number as parameter
 $routes->get('/signin', 'Auth::signin');
 $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');

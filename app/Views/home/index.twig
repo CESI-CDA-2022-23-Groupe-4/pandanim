@@ -11,10 +11,14 @@
   </div>
 </div>
 -->
+{{data.searchForm.form_open|raw}}
+{{data.searchForm.form_search|raw}}
+{{data.searchForm.form_submit|raw}}
+{{data.searchForm.form_close|raw}}
 {% set cardWeight = 0 %}
 {% if data is defined %}
 <div class="row row-cols-1 row-cols-md-4" >
-            {% for anime in data | slice(0,20) %}       
+            {% for anime in data.animes | slice(0,20) %}       
          <div class="card">      
          <div class = "col-md-8">
             {% if anime.small_image_url %}
