@@ -1,0 +1,10 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+    <h1>Profil de {{ data.objuser.username }}</h1>
+    <p>Nom : {{ data.objuser.lastname }}</p>
+    <p>Prénom : {{ data.objuser.firstname }}</p>
+    <p>Adresse email : {{ data.objuser.email }}</p>
+
+{% endblock body %}

@@ -42,6 +42,8 @@ $routes->get('/signin', 'Auth::signin');
 $routes->post('/signin', 'Auth::signin');
 $routes->get('/signup', 'Auth::signup');
 $routes->post('/signup', 'Auth::signup');
+$routes->get('/signout', 'Auth::signout');
+$routes->get('/profil', 'Auth::viewProfil');
 
 /*
  * --------------------------------------------------------------------

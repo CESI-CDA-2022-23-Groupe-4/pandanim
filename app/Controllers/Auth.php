@@ -183,4 +183,18 @@ Class Auth extends BaseController {
 
         $this->display('auth/signup');
     }
+
+    public function signout()
+    {
+        $this->session->destroy();
+        return redirect()->to('/');
+    }
+
+    public function viewProfil()
+    {
+        $this->_data = [
+            'objuser' => $this->session->get('user')
+        ];
+        $this->display('auth/profil');
+    }
 }
