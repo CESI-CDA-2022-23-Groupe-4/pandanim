@@ -81,7 +81,7 @@ class Review extends BaseController
       $this->display('review/review_add');
 }
     
-    public function editReview($intId = null){
+    public function editReview($anime_id, $user_id){
         // Déclare l'utilisation du helper
         helper('form');
       
@@ -91,13 +91,15 @@ class Review extends BaseController
         // Instanciation de l'entité
         $objReview     = new \App\Entities\Review_entity();
       
-        if ($intId){
+        if ($anime_id && $user_id){
             $data['title']      = "Edit Review";
-            $objReview         = $objReviewModel->find($intId);
+            $objReview         = $objReviewModel->where('anime_id', $anime_id)->where('user_id', $user_id)->first();
         }else{
             $data['title']      = "Add Review";
         }
-      
+
+        // dd($objReview);
+
         // Il faut charger la librairie
         $validation =  \Config\Services::validation();
       
@@ -106,7 +108,8 @@ class Review extends BaseController
 
         $arrErrors = array();
         // Le formulaire a été envoyé ?
-        if (count($this->request->getPost()) > 0){
+        if (count($this->request->getPost()) > 0) {
+            // dd($objReview);
             $objReview->fill($this->request->getPost());
             //on teste la validation du formulaire sur les données
             if ($validation->run($this->request->getPost())){
@@ -120,12 +123,13 @@ class Review extends BaseController
             }
         }
     
-        $this->_data['form_open']      = form_open("review/add");
+        $this->_data['form_open']      = form_open("review/edit/$anime_id/$user_id");
         $this->_data['form_id']        = form_hidden("review_id", $objReview->review_id??'', "id='review_id'");
         $this->_data['label_comment']     = form_label("Comment", "comment");
         $this->_data['form_comment']      = form_textarea("comment", "", "id='comment'");
         $this->_data['form_submit']    = form_submit("submit", "Envoyer");
         $this->_data['form_close']     = form_close();
+        $this->_data['review'] = $objReview;
         $this->display('review/review_edit');
     }
       

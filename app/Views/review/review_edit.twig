@@ -2,6 +2,14 @@
 
 {% block body %}
 
+<h1>test commentaire</h1>
+{% if data is defined%}
+    <ul>
+            <li>{{data.review.user_id}}</li>
+            <li>{{data.review.anime_id}}</li>
+    </ul>
+{% endif %}
+
 {{data.title | raw}}
 {{data.form_open | raw}}
 {{data.form_id | raw}}

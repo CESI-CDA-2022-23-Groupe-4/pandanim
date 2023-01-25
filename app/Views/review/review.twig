@@ -18,8 +18,8 @@
                 <td>{{review.username}}</td>
                 <td>{{review.comment}}</td>
                 <td>
-                    <button href="/review/edit/anime_id/user_id" type="button" class="btn btn-secondary">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="{{base_url()}}/review/edit/{{review.anime_id}}/{{review.user_id}}" type="button" class="btn btn-secondary">Edit</a>
+                    <a type="button" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             </table>
