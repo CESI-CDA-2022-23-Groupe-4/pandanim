@@ -1,0 +1,7 @@
+
+/** header **/
+@font-face {
+	font-family: 'Manga';
+	src: url(‘/fonts/Play.woff2’) format(‘woff2’),
+		url(‘/fonts/Play.ttf’) format(‘truetype’)
+}

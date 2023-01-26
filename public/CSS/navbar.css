@@ -1,0 +1,15 @@
+
+@font-face {
+
+  font-family: "Manga";
+  src: local("Player-Regular"),
+       local("Player-Bold"),
+       url(Player-Regular.ttf);
+  font-weight: bold;
+}
+
+
+.police{
+  font-family: 'Manga';
+}
+

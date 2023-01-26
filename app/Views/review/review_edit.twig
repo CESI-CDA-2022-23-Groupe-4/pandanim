@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+<h1>test commentaire</h1>
+{% if data is defined%}
+    <ul>
+            <li>anime_id={{data.review.anime_id}}</li>
+            <li>user_id={{data.review.user_id}}</li>
+    </ul>
+{% endif %}
+
+{{data.title | raw}}
+{{data.form_open | raw}}
+{{data.form_id | raw}}
+{{data.label_score| raw}}
+{{data.form_score | raw}}
+{{data.label_comment | raw}}
+{{data.form_comment | raw}}
+{{data.form_submit | raw}}
+{{data.form_close | raw}}
+
+{% endblock %}

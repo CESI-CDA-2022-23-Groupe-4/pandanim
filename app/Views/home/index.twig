@@ -1,10 +1,61 @@
 {% extends "base.twig" %}
 
-
-{% block body %}
-    <h1>test</h1>
-<p>Cela fonctionne parfaitement</p>
-<p>{{test}}</p>
+{% block title %}Home
 {% endblock %}
 
+{% block head %}
+	<link rel="stylesheet" href="{{ base_url() }}/CSS/home.css">
+{% endblock %}
 
+{% block body %}
+
+	{% if data is defined %}
+		<div class="container">
+			<div class="row justify-content-center">
+        <div class="col-5 mb-3">
+          {{data.searchForm.form_open|raw}}
+          {{data.searchForm.form_search|raw}}
+          {{data.searchForm.form_submit|raw}}
+          {{data.searchForm.form_close|raw}}
+        </div>
+      </div>
+			<div class="row justify-content-center">
+				{% for anime in data.animes %}
+					<div class="card m-3 p-0 col-3">
+						{% if anime.small_image_url %}
+							<img src={{anime.small_image_url}} class="card-img-top" alt="{{anime.name}} image">
+						{% else %}
+							<img src="https://thumbs.gfycat.com/GrandiosePalatableHart.webp" class="card-img-top" alt="image not found">
+						{% endif %}
+						<div class="card-body">
+							<h5 class="police">
+								{{anime.title}}
+							</h5>
+							<p class="card-text">
+								-
+								{{anime.type}}
+								{{anime.episodes}}
+								ep,{{anime.duration}}
+							</p>
+							<p class="card-text">
+								-
+								{{anime.rating}}
+							</p>
+							<p class="card-text">
+								-
+								{{anime.mal_score}}/10 ({{anime.scored_by}})</p>
+							<p class="card-text">
+								-
+								{{anime.synopsis | slice(0,150) }}
+								...
+							</p>
+
+							<a href="{{base_url}}/anime/details/{{anime.id}}" class="stretched-link" style="color : white; text-decoration : none"></a>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
