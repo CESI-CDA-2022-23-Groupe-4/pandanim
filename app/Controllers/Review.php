@@ -29,6 +29,13 @@ class Review extends BaseController
         $this->display('review/review');
     }
 
+    public function ListeRadmin()
+    {
+        $review = new Review();
+        $this->_data = $review->findAllReview();
+        $this->display('review/reviewA');
+    }
+
     public function addReview(int $anime_id, int $user_id){
         helper('form'); // Déclare l'utilisation du helper
     
@@ -58,8 +65,7 @@ class Review extends BaseController
                 $objReview     = new \App\Entities\Review_entity(); // Instanciation de l'entité
 
                 $objReview->fill($this->request->getPost());
-                $objReview->anime_id = $anime_id;
-                $objReview->user_id = $user_id;
+
                 $objReviewModel->save($objReview); // On sauvegarde l'objet
 
                 return redirect()->to('/review'); // redirection vers l'action par défaut du controller Product
@@ -74,7 +80,7 @@ class Review extends BaseController
 
         $data['arrErrors'] 		= $arrErrors;
 
-      $this->_data['form_open']      = form_open("review/add/$anime_id/$user_id");
+      $this->_data['form_open']      = form_open("review/add");
       $this->_data['label_score']     = form_label("Score", "score");
       $this->_data['form_score']      = form_input("score", "", "id='score'");
       $this->_data['label_comment']     = form_label("Comment", "comment");
@@ -85,7 +91,7 @@ class Review extends BaseController
       $this->display('review/review_add');
 }
     
-    public function editReview(int $anime_id, int $user_id){
+    public function editReview($anime_id, $user_id){
         // Déclare l'utilisation du helper
         helper('form');
       
@@ -113,11 +119,10 @@ class Review extends BaseController
         $arrErrors = array();
         // Le formulaire a été envoyé ?
         if (count($this->request->getPost()) > 0) {
+            // dd($objReview);
             $objReview->fill($this->request->getPost());
             //on teste la validation du formulaire sur les données
             if ($validation->run($this->request->getPost())){
-                $objReview->anime_id = $anime_id;
-                $objReview->user_id = $user_id;
                 // On sauvegarde l'objet
                 $objReviewModel->save($objReview);
                 // redirection vers l'action par défaut du controller Product
@@ -128,8 +133,8 @@ class Review extends BaseController
             }
         }
     
-        $data['arrErrors'] 		= $arrErrors;
         $this->_data['form_open']      = form_open("review/edit/$anime_id/$user_id");
+        $this->_data['form_id']        = form_hidden("review_id", $objReview->review_id??'', "id='review_id'");
         $this->_data['label_score']     = form_label("Score", "score");
         $this->_data['form_score']      = form_input("score", "", "id='score'");
         $this->_data['label_comment']     = form_label("Comment", "comment");
