@@ -1,19 +1,7 @@
-/** header 
-@media screen and (min-width: 1200px) {
-img.header-logo {
-    width: 8%;
-    margin-left: 25%;
-    
-}
-}
 
-h1.header-accroche {
-    text-align: center;
-    margin-top: -95px;
-    color: red;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    @media screen and (min-width: 1200px) {
-    margin-top: -105px;
-    }
+/** header **/
+@font-face {
+	font-family: 'Manga';
+	src: url(‘/fonts/Play.woff2’) format(‘woff2’),
+		url(‘/fonts/Play.ttf’) format(‘truetype’)
 }
-**/
