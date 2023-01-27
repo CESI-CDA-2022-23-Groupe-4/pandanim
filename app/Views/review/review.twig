@@ -10,11 +10,11 @@
         {% for review in data %}
 
         <div class="box">
-            <div>{{review.comment}}</div>
-            <div class="content">
-                <div class="info">
-                <div class="name">{{review.username}}</div>
+            <div class="name">{{review.username}}</div>
+            <div class="">
                 <div class="stars">{{review.score}}</div>
+                <div class="info">
+                    <div>{{review.comment}}</div>
                 </div>
             </div>
         </div>
